@@ -1,0 +1,28 @@
+Streaming twitter data using Flume
+
+1. Login to the Twitter Account
+2. Go to https://apps.twitter.com/app
+3. Enter the necessary details
+4. Access the developer agreement and select the 'create your Twitter application' button
+5. Select the 'Keys and Access Token' tab
+6. Copy the consumer key and the consumer secret code
+7. Scroll down further and select the 'create my access token' button
+8. Copy the Access Token and Access token Secret code.
+9. Download flume tar file from below link and extract it.
+https://drive.google.com/drive/u/0/folders/0B1QaXx7tpw3SWkMwVFBkc3djNFk
+10. Create a new file inside the conf directory inside the Flume-extracted directory.
+11. Copy the flume configuration code from the below link and paste it in the newly created file.
+https://drive.google.com/open?id=0B1QaXx7tpw3Sb3U4LW9SWlNidkk
+12. Change the twitter api keys with the keys generated as shown in the step no 6 and step number 8
+13. We have to decide which keywords tweet data to be collected from the twitter application. So, you can change the keywords in the TwitterAgent.sources.Twitter.keywords command.
+In our example, we are fetching tweet data related to Hadoop, election, sports, cricket and Big data.
+14. Open a new terminal and start all the Hadoop daemons, before running the flume command to fetch the twitter data.
+Use the ‘jps’ command to see the running Hadoop daemons.
+15. Create a new directory inside HDFS path, where the Twitter tweet data should be stored.
+Hadoop dfs –mkdir –p /user/flume/tweets
+16. For fetching data from Twitter, Use the below command to fetch the twitter tweet data into the HDFS cluster path.
+flume-ng agent -n TwitterAgent -f <location of created/edited conf file>
+17. To check the contents of the tweet data we can use the following command:
+hadoop dfs –ls /user/flume/tweets
+18. We can use the ‘cat’ command to display the tweet  data inside the /user/flume/tweets/FlumeData.145* path.
+hadoop dfs –cat /us er/flume/tweets/<flumeData file name>
